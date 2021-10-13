@@ -1,40 +1,31 @@
-function $(id)
-{
-    return document.getElementById(id);
-}//function closed
+var $ = function (id) { //functionName(parameter)
+    return document.getElementById(id); //return ends function
+};
 
+var calculate = function () {
+    var name = $("full_name").value;
+    var loan = $("initial_loan_amount").value;
+    var months = $("months").value;
+    var interest = $("interest").value;
+    var monthlyPayment = loan;
+    //DEBUG alert("name: "+name+ " loan: " +loan+ " months: "+months+ "  interest: "+interest);
 
-
- var calculate_click = function()
- {
-    
-    var fullName = $("full_name").value;
-    var initialLoanAmount = $("initial_loan").value;
-    var numMonths = $("num_months").value;
-    var annualInterest = $("annual_interest").value;
-    var monthlyPayment = $("monthly_payment").value;
-    
-     //called the minions
-    annualInterest = (annualInterest/12)/100;
-    //turns annual interest into monthly interest and into a decimal
-    //monthlyPayment = initialLoanAmount* (annualInterest/(1-(Math.pow((1+annualInterest),- numMonths))));
-    monthlyPayment = initialLoanAmount*(annualInterest/(1-((1+annualInterest)**-numMonths))); 
-    //caluclates monthly payment 
+    var monthlyInterestTop = interest / 12;
+    monthlyInterestTop /= 100;
+    var monthlyInterestBot = monthlyInterestTop;
+    //DEBUG alert(+monthlyInterestTop);
+    monthlyInterestBot += 1;
+    months *= -1;
+    //DEBUG  alert(+months);
+    monthlyInterestBot = monthlyInterestBot ** months;
+    var bottomCalc = 1 - monthlyInterestBot;
+    var f = monthlyInterestTop / bottomCalc;
+    monthlyPayment *= f;
+    //DEBUG alert(+monthlyPayment);
     $("monthly_payment").value = "$" + monthlyPayment.toFixed(2);
-    //return value back to html
-    
     return false;
-    // makes form return false so calculations go on labels instead of submitting to another form
- }//function closed 
- 
- window.onload = function () 
-{
-    $("full_name").value = "";
-    $("initial_loan").value = "";
-    $("num_months").value = "";
-    $("annual_interest").value = "";
-    $("monthly_payment").value ="";
-    //clears fields when refreshed 
+};
+
+window.onload = function () {
     $("full_name").focus();
-    //put arrow at fullName 
-}; 
+};
