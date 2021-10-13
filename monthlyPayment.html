@@ -1,93 +1,48 @@
-<!DOCTYPE html>​
+<!DOCTYPE html>
+<html lang="en">
 
-<html lang="en">​
+<head>
+	<meta charset="UTF-8">
+	<title>Monthly Payment Calculator</title>
+	<link rel="stylesheet" href="monthlyPayment.css">
+	<script src="monthlyPayment.js"></script>
+</head>
 
-<head>​
+<body>
+    <main>
+        <h1>Monthly Loan Payment Calculator</h1>
+        <form id="payment_form" name="payment_form" onsubmit = "return calculate()" method ="get"> <!--Finish the onsubmit with function-->
+            <label for="full_name">Full name:</label>
+            <input type="text" id="full_name" name="full_name" required>
+            <!-- <span id="full_name_error" class = "red">error</span> --> 
+            <br>
 
-<meta charset="UTF-8">​
+            <label for="initial_loan_amount">Initial loan amount:</label>
+            <input type="number" id="initial_loan_amount" name="initial_loan_amount" min="0.01"step="0.01" required>
+            <!-- <span id="initial_loan_error" class = "red">error</span> --> 
+            <br>
 
-<title>Monthly Payment Calculator</title>​
+            <label for="months">Months:</label>
+            <input type="number" id="months" name="months" min="1"required>
+            <!-- <span id="full_name_error" class = "red">error</span> --> 
+            <br>
 
-<link rel="stylesheet" href="monthlyPayment.css">​
-<link href="https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:300" rel="stylesheet">
+            <label for="interest">Annual Interest:</label>
+            <input type="number" id="interest" name="interest" min="0" max="100" required>
+            <!-- <span id="full_name_error" class = "red">error</span> --> 
+            <br>
 
-<script src="monthlyPayment.js"></script>​
-
-</head>​
-
-<body>​
-
-
-
-<h1>Monthly Payment Calculator</h1>​
-<h2> Enter the values below and click "Calculate"</h2>
-
-
-<form id="calculatePayment" name= "calculatePayment" onsubmit="return calculate_click();"
-      method = "POST">
-<div>
-   <label for="full_name">Full Name:</label>​
-
-   <input type="text" id="full_name" pattern="[A-Za-z ]{1,50}" required/>​ 
-
-   ​
-
-
-   <br>​
-
-​
-
-
-   <label  for="initial_loan">Initial Loan Amount: </label>​
-
-   <input type="number" id= "initial_loan"  min="0"  step=".01"  required/>​
-
-   
-
-   <br>​
-   
-
-​  <label for="num_months">Number of Months:</label>​
-
-   <input type="number" id="num_months" min="0" step=".01" required/>​
-
-
-
-<br>
-
-
-​  <label for="annual_interest">Annual Interest:</label>​
-
-   <input type="number" id="annual_interest" min="0" max= "100" step=".01" required/>​
-<span > &nbsp %</span>​
-
-
-<br>​
-
-
-   <label for="monthly_payment">Monthly Payment:</label>​
-
-   <input type="text" id="monthly_payment"  disabled="disabled" required/>​
-
-  
-
-
-
-
-
-
-
-                <br>​
-<label>&nbsp;</label>​
-
-<input type="submit" id="calc"  value="Calculate"/>​
-</div>
-</form>
-
-
-
-
-
-</body>​
-
-</html>​
+            <input type="submit" id="submit_form" class="buttons" value="Calculate">
+			<input type="reset" id="reset_form" class="buttons" name="reset_form">
+            <br>
+            
+            <label for="monthly_payment" id="monthly_payment_label">Monthly Payment: </label>
+            <output name="monthly_payment" id="monthly_payment" value="monthly_payment"> </output>
+        </form>
+    </main>
+</body>
+<!--//full name
+//initial loan amount
+//number of months of loan
+//annual interest
+monthly payment -->
